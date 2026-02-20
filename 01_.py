@@ -83,4 +83,3 @@ except Exception:
 out = "canvas_CRISP-DM.png"
 img.save(out)
 print(f"DISPLAY yok — çıktı '{out}' olarak kaydedildi.")
-# ...existing code...
