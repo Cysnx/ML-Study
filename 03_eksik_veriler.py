@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-veriler= pd.read_csv('eksikveriler.csv')
+veriler= pd.read_csv('eksikveriler.csv') # 02'ye göre dosya ismi değiştirildi.
 
 
 print(f'eksik veriler: \n {veriler}')
@@ -26,7 +26,7 @@ ali=insan()
 print(ali.boy)
 print(ali.kosmak(90))
 
-#missing values
+#missing values / eksikveriler konusunun başlangıcı.
 
 from sklearn.impute import SimpleImputer
 
