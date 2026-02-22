@@ -11,21 +11,33 @@ import os
 
 from PIL import Image, ImageDraw, ImageFont
 
-W, H = 600, 900
+W, H = 900, 1200
 GAP, GAP_V=50,100
 img = Image.new("RGB", (W, H), "white")
 draw = ImageDraw.Draw(img)
 
-x1_rect1, y1_rect1 = 50, 50
-x2_rect1, y2_rect1 = 200, 150
+
+
+x1_rect0, y1_rect0 = 300, 10
+x2_rect0, y2_rect0 = 650, 40
+
+draw.rectangle((x1_rect0, y1_rect0, x2_rect0, y2_rect0), fill="darkblue", outline="black")
+draw.text((x1_rect0+10, y1_rect0+(y2_rect0-y1_rect0)/2), "DATA", fill="white")
+
+
+################# Zeroth Box Done - CATEGORICAL #################
+
+
+x1_rect1, y1_rect1 = 300, 50
+x2_rect1, y2_rect1 = 450, 150
 
 draw.rectangle((x1_rect1, y1_rect1, x2_rect1, y2_rect1), fill="lightblue", outline="black")
 draw.text((x1_rect1+10, y1_rect1+(y2_rect1-y1_rect1)/2), "1. Categorical", fill="black")
 
 ################# First Box Done - CATEGORICAL #################
 
-x1_rect2, y1_rect2 = 250, y1_rect1
-x2_rect2, y2_rect2 = 400, y2_rect1
+x1_rect2, y1_rect2 = 500, y1_rect1
+x2_rect2, y2_rect2 = 650, y2_rect1
 
 draw.rectangle((x1_rect2, y1_rect2, x2_rect2, y2_rect2), fill="lightgreen", outline="black")
 draw.text((x1_rect2+10, y1_rect2+(y2_rect2-y1_rect2)/2), "2. Numerical", fill="black")
@@ -72,6 +84,23 @@ draw.text((x1_rect6+10, y1_rect6+(y2_rect6-y1_rect6)/2), "2.2 Interval", fill="b
 
 
 ################# Sixth Box Done - INTERVAL #################
+
+x1_rect7, y1_rect7 = x1_rect1-4*GAP, y2_rect2 + GAP
+x2_rect7, y2_rect7 = x2_rect1-4*GAP, y1_rect3 + GAP_V
+
+draw.rectangle((x1_rect7, y1_rect7, x2_rect7, y2_rect7), fill="green", outline="black")
+draw.text((x1_rect7+10, y1_rect7+(y2_rect7-y1_rect7)/2), "Categorical Problems", fill="black")
+
+
+################# Seventh Box Done - Classification #################
+
+x1_rect8, y1_rect8 = x1_rect2+4*GAP, y1_rect3
+x2_rect8, y2_rect8 = x2_rect2+4*GAP, y2_rect3
+
+draw.rectangle((x1_rect8, y1_rect8, x2_rect8, y2_rect8), fill="yellow", outline="black")
+draw.text((x1_rect8+10, y1_rect8+(y2_rect8-y1_rect8)/2), "Prediction Problems", fill="black")
+
+################# Eight Box Done - Prediction #################
 
 
 #draw.ellipse((250, 50, 380, 150), fill="salmon", outline="black")

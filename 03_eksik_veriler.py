@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 veriler= pd.read_csv('eksikveriler.csv') # 02'ye göre dosya ismi değiştirildi.
 
 
