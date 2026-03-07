@@ -1,89 +1,115 @@
-# libraries
-
-import pandas as pd
+#1.kutuphaneler
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
 
-veriler= pd.read_csv('veriler.csv')
+#2.veri onisleme
+#2.1.veri yukleme
+veriler = pd.read_csv('veriler.csv')
+#pd.read_csv("veriler.csv")
+#test
+print(veriler)
+Yas = veriler.iloc[:,1:4].values
+print(Yas)
 
-print(f'Veriler: \n {veriler}')
-
-
-boy_kilo_yas=veriler.iloc[:,1:4]
+#encoder: Kategorik -> Numeric
+ulke = veriler.iloc[:,0:1].values
+print(ulke)
 
 from sklearn import preprocessing
 
 le = preprocessing.LabelEncoder()
 
-#ülkelerin dönüşmeleri
-ulke = le.fit_transform(veriler.iloc[:,0])
-ulke = ulke.reshape(-1,1)
+ulke[:,0] = le.fit_transform(veriler.iloc[:,0])
 
 print(ulke)
 
-ohe=preprocessing.OneHotEncoder()
-ulke=ohe.fit_transform(ulke).toarray()
+ohe = preprocessing.OneHotEncoder()
+ulke = ohe.fit_transform(ulke).toarray()
 print(ulke)
 
-#cinsiyet dönüşümleri
-cinsiyet = le.fit_transform(veriler.iloc[:,-1])
-cinsiyet = cinsiyet.reshape(-1,1)
-
-print(cinsiyet)
-
-ohe=preprocessing.OneHotEncoder()
-cinsiyet=ohe.fit_transform(cinsiyet).toarray()
-print(cinsiyet)
+#encoder: Kategorik -> Numeric
+c = veriler.iloc[:,-1:].values
+print(c)
 
 
-#merging
-print(list(range(22)))
+from sklearn import preprocessing
 
-""" encode ettiğim 'ülke' verilerini 0'dan başlayıp 21'e kadar yani 'index'=22 olacak şekilde
-ve veri başlıkları da ülke isimleri olacak şekilde bir sonuc dataframe'i oluştur """
+le = preprocessing.LabelEncoder()
 
-sonuc=pd.DataFrame(data=ulke, index = range(22), columns=['fr','tr','us'])
-print("Encode edilmiş ülkeler, DATAFRAME olarak:")
+c[:,-1] = le.fit_transform(veriler.iloc[:,-1])
+
+print(c)
+
+
+#numpy dizileri dataframe donusumu
+sonuc = pd.DataFrame(data=ulke, index = range(22), columns = ['fr','tr','us'])
 print(sonuc)
 
-# yas diye adlandırmısız ama aslında sayısal veriler.
-sonuc2=pd.DataFrame(data=boy_kilo_yas, index=range(22), columns=['boy','kilo','yas'])
-print("Encode edilmiş boy kilo ve yaş, DATAFRAME olarak:")
+sonuc2 = pd.DataFrame(data=Yas, index = range(22), columns = ['boy','kilo','yas'])
 print(sonuc2)
 
-sonuc3=pd.DataFrame(data=cinsiyet[:,0:1], index=range(22), columns=['cinsiyet']) # dummy varible dikkat!
-print("cinsiyet, DATAFRAME olarak:")
+cinsiyet = veriler.iloc[:,-1].values
+print(cinsiyet)
+
+sonuc3 = pd.DataFrame(data = c[:,:1], index = range(22), columns = ['cinsiyet'])
 print(sonuc3)
 
-""" birleştirmelerin başladığı yer"""
 
-s=pd.concat([sonuc,sonuc2],axis=1)
-print("Encode edilmiş ülkeler ve boy-kilo-yaş, DATAFRAME olarak:")
+#dataframe birlestirme islemi
+s=pd.concat([sonuc,sonuc2], axis=1)
 print(s)
 
-s2=pd.concat([s,sonuc3],axis=1)
-print("Encode edilmiş ülkeler, boy-kilo-yaş ve cinsiyet, DATAFRAME olarak:")
+s2=pd.concat([s,sonuc3], axis=1)
 print(s2)
 
-# Train_Test_Split
-
+#verilerin egitim ve test icin bolunmesi
 from sklearn.model_selection import train_test_split
 
-x_train, x_test, y_train, y_test=train_test_split(s,s2,test_size=0.33, random_state=0)
-
-from sklearn.preprocessing import StandardScaler
-
-sc=StandardScaler()
-
-X_train=sc.fit_transform(x_train)
-X_test=sc.fit_transform(x_test)
-Y_train=sc.fit_transform(y_train)
-Y_test=sc.fit_transform(y_test)
-
-# consturcting the model!
+x_train, x_test,y_train,y_test = train_test_split(s,sonuc3,test_size=0.33, random_state=0)
 
 
+from sklearn.linear_model import LinearRegression
+regressor = LinearRegression()
+regressor.fit(x_train,y_train)
 
-import stadsmodels.api as sm
+y_pred = regressor.predict(x_test)
 
-X=np.append(arr=np.ones((22,1)).astype(int), values=veri, axis=1)
+boy = s2.iloc[:,3:4].values
+print(boy)
+sol = s2.iloc[:,:3]
+sag = s2.iloc[:,4:]
+
+veri = pd.concat([sol,sag],axis=1)
+
+x_train, x_test,y_train,y_test = train_test_split(veri,boy,test_size=0.33, random_state=0)
+
+
+r2 = LinearRegression()
+r2.fit(x_train,y_train)
+
+y_pred = r2.predict(x_test)
+
+
+import statsmodels.api as sm
+
+X=np.append(arr= np.ones((22,1)).astype(int), values=veri, axis=1)
+
+X_l=veri.iloc[:, [0,1,2,3,4,5]].values
+X_l=np.array(X_l,dtype=float)
+
+model=sm.OLS(boy,X_l).fit()
+print(model.summary())
+
+
+
+X_l=veri.iloc[:, [0,1,2,3]].values
+X_l=np.array(X_l,dtype=float)
+
+model=sm.OLS(boy,X_l).fit()
+print(model.summary())
+
+
+
+
+
