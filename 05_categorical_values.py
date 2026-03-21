@@ -2,29 +2,12 @@
 
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
 
 veriler= pd.read_csv('eksikveriler.csv')
 
 
 print(f'eksik veriler: \n {veriler}')
 
-boy=veriler[['boy']]
-print('boy: \n',boy)
-
-boykilo=veriler[['boy','kilo']]
-print('boykilo: \n ',boykilo)
-
-class insan:
-    boy=180
-    def kosmak(self,b):
-        return b+10
-    # y= f(x)
-    # f(x) = x+10
-
-ali=insan()
-print(ali.boy)
-print(ali.kosmak(90))
 
 #missing values
 
@@ -50,8 +33,10 @@ le = preprocessing.LabelEncoder()
 ulke = le.fit_transform(veriler.iloc[:,0])
 ulke = ulke.reshape(-1,1)
 
+print('Label encoding oncesi')
 print(ulke)
 
 ohe=preprocessing.OneHotEncoder()
 ulke=ohe.fit_transform(ulke).toarray()
+print('Label encoding sonrasi')
 print(ulke)

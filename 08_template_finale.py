@@ -9,23 +9,6 @@ veriler= pd.read_csv('eksikveriler.csv')
 
 print(f'eksik veriler: \n {veriler}')
 
-boy=veriler[['boy']]
-print('boy: \n',boy)
-
-boykilo=veriler[['boy','kilo']]
-print('boykilo: \n ',boykilo)
-
-class insan:
-    boy=180
-    def kosmak(self,b):
-        return b+10
-    # y= f(x)
-    # f(x) = x+10
-
-ali=insan()
-print(ali.boy)
-print(ali.kosmak(90))
-
 #missing values
 
 from sklearn.impute import SimpleImputer
