@@ -1,0 +1,57 @@
+Keywords: Data, Statistics, Population, Sample, Census.
+
+https://www.youtube.com/watch?v=9FtHB7V14Fo&list=PL5102DFDC6790F3D0
+
+Data→ Any observations that have been collected.
+
+Statistics→ Collecting, analyzing, summarizing, interpreting, and drawing conclusions from DATA.
+
+Population→ The complete set of elements being studied.
+
+Sample → Some subset of a population.
+
+Census→Collecting from every member of a population.
+
+** If you take a sample, it must be collected randomly.
+
+
+
+Types of Data:
+
+Parameter→ A characteristic of a population. P-P
+
+Statistic→ A characteristic of a sample. S-S
+
+Two Types of Data:
+
+Qualitative/Categorical→Non- Numeric: Color, Gender, Race, Religion, Zipcode*, Phone number *, etc.
+
+*Mathematical operations are meaningless.
+
+Quantitative→ Numerical; Height/ Weight, KPH, Wage, Time, etc.
+
+* Mathematical operations are meaningful.
+
+Two Types of Quantitative Data:
+
+Discrete Data: Countable or finite: # of eggs, dice, etc.
+
+ * Usually a ‘count’.
+
+Continuous Data: Infinite number of possible values (not countable): Temp, etc.
+
+* Usually a ‘measurement’.
+
+
+
+4 Levels of Measurement:
+
+Nominal: Categories NOT ordered: Religion, gender, etc.
+
+Ordinal: Can be ordered.
+
+Differences are meaningless. e.g: Rank, color (spectrum).
+
+Interval: Ordered, differences are meaningful. But no 'natural zero': Temperature (except Kelvin).
+
+Ratio: Just like interval but w/ ‘natural zero’. e.g: Amount of Money.
