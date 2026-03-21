@@ -90,10 +90,11 @@ r2.fit(x_train,y_train)
 
 y_pred = r2.predict(x_test)
 
-
+# P value analizi için
 import statsmodels.api as sm
 
 X=np.append(arr= np.ones((22,1)).astype(int), values=veri, axis=1)
+#çarpanı 1 olan beta0 ı ekliyoruz.
 
 X_l=veri.iloc[:, [0,1,2,3,4,5]].values
 X_l=np.array(X_l,dtype=float)
@@ -108,7 +109,6 @@ X_l=np.array(X_l,dtype=float)
 
 model=sm.OLS(boy,X_l).fit()
 print(model.summary())
-
 
 
 

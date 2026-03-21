@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 veriler= pd.read_csv('satislar.csv')
 
 
-print(f'eksik veriler: \n {veriler}')
+print(f'Dosya: \n {veriler}')
 
 aylar=veriler[['Aylar']]
 print('Aylar: \n',aylar)
